@@ -1,0 +1,22 @@
+{
+  "name": "scan-to-3d",
+  "version": "1.0.0",
+  "description": "Turn MRI and CT scans (DICOM, NIfTI, JPG/PNG slices) into a 3D model in the browser. Files never leave the device.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --minify --format=iife --target=es2020 --alias:fs=./src/empty.js --alias:path=./src/empty.js --alias:crypto=./src/empty.js --outfile=app.js",
+    "test:data": "mkdir -p tests/dcm && python3 tests/make_test_scan.py tests/dcm",
+    "test": "node tests/logic.test.mjs"
+  },
+  "dependencies": {
+    "three": "^0.187.0",
+    "daikon": "^1.2.46",
+    "nifti-reader-js": "^0.8.1",
+    "fflate": "^0.8.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
